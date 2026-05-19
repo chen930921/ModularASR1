@@ -8,7 +8,11 @@ import subprocess
 import numpy as np
 from pathlib import Path
 import imageio_ffmpeg
+import os
+from dotenv import load_dotenv
 
+# 載入 .env 檔案中的環境變數
+load_dotenv()
 # 1. 匯入你專案現有的 ASR 引擎
 from asr.whisper_engine import WhisperASR
 
@@ -31,7 +35,8 @@ def extract_audio_with_ffmpeg(video_path: str, target_sr: int = 16000) -> np.nda
 
 async def run_file_pipeline():
     TARGET_SAMPLE_RATE = 16000
-    CLOUD_MONGODB_URI = "mongodb+srv://jeremy930921_db_user:Jeremy930921@cluster0.agokgyz.mongodb.net/?appName=Cluster0"
+    # 刪除原本的明文網址，改成這行：
+    CLOUD_MONGODB_URI = os.getenv("MONGODB_URI")
     
     print("==================================================")
     print("🚀 啟動獨立影片檔案處理 (動態輸入/拖曳模式)")
