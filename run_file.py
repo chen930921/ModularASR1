@@ -35,7 +35,6 @@ def extract_audio_with_ffmpeg(video_path: str, target_sr: int = 16000) -> np.nda
 
 async def run_file_pipeline():
     TARGET_SAMPLE_RATE = 16000
-    # 刪除原本的明文網址，改成這行：
     CLOUD_MONGODB_URI = os.getenv("MONGODB_URI")
     
     print("==================================================")
